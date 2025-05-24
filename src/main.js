@@ -30,6 +30,7 @@ createApp({
       urls: sampleUrls,
       release: 8,
       onload: () => {
+        return
         let i = 0
         const test = setInterval(()=>{
           sampler.triggerAttackRelease(this.pref[i++].note, '8n')
