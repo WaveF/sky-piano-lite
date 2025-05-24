@@ -10,8 +10,7 @@
     "git:info": "git remote -v",
     "git:reset": "git remote remove origin",
     "git:init": "git remote add gitee https://gitee.com/wavef/sky-piano-lite.git && git remote add github https://github.com/WaveF/sky-piano-lite.git",
-    "git:update": "git remote set-url github https://github.com/YOUR_NAME/REPO_URL.git",
-    "git:push": "git push --force gitee master && git push --force github master:main"
+    "git:push": "git push --force gitee main && git push --force github main"
   },
   "devDependencies": {
     "vite": "^6.3.5"
