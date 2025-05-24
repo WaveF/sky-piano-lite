@@ -1,0 +1,23 @@
+{
+  "name": "sky-piano-lite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "git:info": "git remote -v",
+    "git:reset": "git remote remove origin",
+    "git:init": "git remote add gitee https://gitee.com/wavef/sky-piano-lite.git && git remote add github https://github.com/WaveF/sky-piano-lite.git",
+    "git:update": "git remote set-url github https://github.com/YOUR_NAME/REPO_URL.git",
+    "git:push": "git push --force gitee master && git push --force github master:main"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "petite-vue": "^0.4.1",
+    "tone": "^15.1.22"
+  }
+}
