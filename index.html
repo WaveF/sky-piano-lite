@@ -12,7 +12,7 @@
     <script src="./tailwindcss-jit-cdn.umd.min.js"></script>
   </head>
   <body>
-    <div id="app" class="flex w-full h-full justify-center items-center px-4 bg-cover bg-center bg-blend-multiply"
+    <div id="app" class="flex flex-col w-full h-full justify-center items-center px-4 bg-cover bg-center bg-blend-multiply"
       :style="{ background:`url(${bgImage}) center / cover no-repeat, ${bgColor}`}"
       @vue:mounted="mounted($el)"
       @vue:unmounted="unmounted">
@@ -26,6 +26,8 @@
           </div>
         </template>
       </div>
+    
+      <span class="fixed bottom-0 text-xs text-white py-2 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @click="location.reload">No sound? Click here<span>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
