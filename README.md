@@ -2,6 +2,8 @@
 
 **Sky Piano Lite** is a lightweight web-based piano simulator inspired by *Sky: Children of the Light*. It allows players to practice and enjoy the musical instruments from the game directly in their browser.
 
+![sky-piano-lite-screenshot](screenshot.jpg)
+
 ---
 
 ## ✨ Features
