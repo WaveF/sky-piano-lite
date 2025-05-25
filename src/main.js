@@ -44,12 +44,28 @@ createApp({
     await Tone.start() // 确保 AudioContext resume
     sampler.triggerAttackRelease("C4", "8n", undefined, 0)
 
-    /* iOS Safari 会无视 user-scalable=no
-      和 touch-action: manipulation;
-      因此需要屏蔽双击
-    */
+    // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
     document.addEventListener("keydown", this.onKeyDown.bind(this))
+
+    // 修正锁屏后打开无声的问题
+    document.addEventListener('visibilitychange', async () => {
+      if (document.visibilityState === 'visible') {
+        // 检查 AudioContext 是否 suspended
+        if (Tone.context.state === 'suspended') {
+          console.log('Resuming AudioContext after wake')
+          await Tone.start()
+          sampler.triggerAttackRelease("C4", "8n", undefined, 0)
+        }
+      }
+    })
+    document.body.addEventListener('touchstart', async () => {
+      if (Tone.context.state === 'suspended') {
+        await Tone.start()
+        sampler.triggerAttackRelease("C4", "8n", undefined, 0)
+        console.log('Audio resumed on touch')
+      }
+    }, { once: true })
   },
   onDblClick(e) {
 
