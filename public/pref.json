@@ -1,4 +1,7 @@
 {
+  "bgImage": "bg.webp",
+  "bgColor": "#666",
+  "showNotes": true,
   "samples": [
     { "note": "C4", "sample": "samples/piano/C4.mp3", "key": "1" },
     { "note": "D4", "sample": "samples/piano/D4.mp3", "key": "2" },
@@ -15,8 +18,5 @@
     { "note": "A5", "sample": "samples/piano/A5.mp3", "key": "d" },
     { "note": "B5", "sample": "samples/piano/B5.mp3", "key": "f" },
     { "note": "C6", "sample": "samples/piano/C6.mp3", "key": "g" }
-  ],
-  "bgImage": "bg.webp",
-  "bgColor": "#666",
-  "showNotes": true
+  ]
 }
