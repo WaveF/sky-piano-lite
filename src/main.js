@@ -76,8 +76,9 @@ createApp({
     requestAnimationFrame(() => this.playNoteAnimate(key))
   },
   onKeyDown(e) {
-    if (!e.repeat && this.keyMap[e.key]) {
-      this.playNote(this.keyMap[e.key])
+    const key = e.key
+    if (!e.repeat && this.keyMap[key]) {
+      this.playNote(this.keyMap[key])
       requestAnimationFrame(() => this.playNoteAnimate(key))
     }
   },
