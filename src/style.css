@@ -9,11 +9,38 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
-  height: 100%;
+* {
+  user-select: none;
+  touch-action: manipulation !important;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
 }
 
-.active {
-  filter: brightness(.9);
-  transform: scale(.9);
+html, body {
+  height: 100%;
+  overscroll-behavior: none;
+  touch-action: manipulation !important;
+}
+
+.note .icon {
+  background-image: url(./type-3.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.note:nth-child(2) .icon,
+.note:nth-child(4) .icon,
+.note:nth-child(7) .icon,
+.note:nth-child(9) .icon,
+.note:nth-child(12) .icon,
+.note:nth-child(14) .icon {
+  background-image: url(./type-2.svg);
+}
+
+.note:nth-child(1) .icon,
+.note:nth-child(8) .icon,
+.note:nth-child(15) .icon {
+  background-image: url(./type-1.svg);
 }

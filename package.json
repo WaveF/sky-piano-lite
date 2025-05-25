@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --host",
+    "build": "vite build --base=./",
     "preview": "vite preview",
     "git:info": "git remote -v",
     "git:reset": "git remote remove origin",

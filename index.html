@@ -2,19 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <link rel="icon" type="image/svg+xml" href="./sky.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="x5-orientation" content="landscape">
+    <meta name="screen-orientation" content="landscape">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <title>Sky Piano Lite</title>
     <script src="./tailwindcss-jit-cdn.umd.min.js"></script>
   </head>
   <body>
-    <div id="app" class="flex w-full h-full justify-center items-center" @vue:mounted="mounted($el)">
-      <div class="grid grid-cols-5 gap-4">
+    <div id="app" class="flex w-full h-full justify-center items-center bg-cover bg-center bg-blend-multiply"
+      :style="{ background:`url(${bgImage}) center / cover no-repeat, ${bgColor}`}"
+      @vue:mounted="mounted($el)"
+      @vue:unmounted="unmounted">
+      <div :class="[`grid grid-cols-5 gap-4 duration-1000`, {'pointer-events-none opacity-30':!loaded}]">
         <template v-for="(value, key, index) in keyMap" :key="key">
-          <div class="flex w-16 h-16 justify-center items-center bg-indigo-200 cursor-pointer duration-100 hover:brightness-90 active:scale-90"
+          <div class="note flex w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
             :data-key="key"
-            v-text="value"
-            @click="handleClick">
+            @pointerdown="onPointerDown"
+            @dblclick.stop.prevent="onDblClick">
+            <div class="icon flex justify-center items-center w-full h-full mix-blend-lighten pointer-events-none" v-text="showNotes ? value : ''"></div>
           </div>
         </template>
       </div>
