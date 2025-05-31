@@ -122,25 +122,6 @@ Once running, use the record toggle button to capture your melody and use the sa
 
 ---
 
-## 📁 Project Structure
-
-```
-sky-piano-lite/
-├── index.html
-├── src/
-│   ├── main.js
-│   ├── style.css
-│   └── assets/
-│       ├── type-1.svg
-│       ├── type-2.svg
-│       └── type-3.svg
-├── pref.json
-├── package.json
-└── README.md
-```
-
----
-
 ## 📄 License
 
 This project is licensed under the MIT License.
