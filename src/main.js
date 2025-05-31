@@ -111,7 +111,7 @@ createApp({
   },
   async loadSheet() {
     try {
-      const resp = await fetch('./sheets/song.json')
+      const resp = await fetch('./sheets/music.json')
       if (!resp.ok) throw new Error('Response not ok')
       const sheet = await resp.json()
       console.log(sheet)
@@ -209,8 +209,8 @@ createApp({
       this.recordStart = Tone.now()
       this.timer = null
     } else {
-      // 将记录的按键队列打印到控制台，就可以直接复制到琴谱的json里
       // console.log(this.record.join(',\n'))
+      // 默认记录绝对时间值，下面会转为相对时间值（以后可以根据时间差值把多键同时按下编进数组里）
       let lastTime = 0;
       const relativeSheet = this.record.map((entry, i) => {
         const { time, ...rest } = JSON.parse(entry);
@@ -234,7 +234,7 @@ createApp({
     const blob = new Blob([JSON.stringify(fileContent, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'song.json';
+    a.download = 'music.json';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
