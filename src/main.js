@@ -52,17 +52,17 @@ createApp({
 
     // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
-    document.addEventListener("keydown", this.onKeyDown.bind(this))
+    document.addEventListener("keydown", this.onPianoKeyDown.bind(this))
   },
-  onDblClick(e) {
+  onPianoDblClick(e) {
     console.log('ignore dblclick')
   },
-  onPointerDown(e) {
+  onPianoPointerDown(e) {
     const key = e.currentTarget.dataset.key
     this.playNote(this.keyMap[e.currentTarget.dataset.key])
     requestAnimationFrame(() => this.playNoteAnimate(key))
   },
-  onKeyDown(e) {
+  onPianoKeyDown(e) {
     const key = e.key
     if (!e.repeat && this.keyMap[key]) {
       this.playNote(this.keyMap[key])
@@ -240,6 +240,6 @@ createApp({
     document.body.removeChild(a);
   },
   unmounted() {
-    document.removeEventListener("keydown", this.onKeyDown)
+    document.removeEventListener("keydown", this.onPianoKeyDown)
   }
 }).mount()

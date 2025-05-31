@@ -26,6 +26,9 @@
 - **Keyboard Support**  
   Play notes using your computer keyboard for a more tactile experience.
 
+- **Sheet Recording and Playback**  
+  Record your key presses in real time and export them as a playable sheet. Playback functionality allows you to rehearse or share melodies easily.
+
 ---
 
 ## ⚙️ Customizing Configuration via `pref.json`
@@ -62,6 +65,29 @@ To tailor the behavior and appearance of **Sky Piano Lite**, you can modify the 
 
 **Note:** Ensure that the paths to images and audio samples are correct and that the files exist in the specified locations.
 
+### Sheet File Format
+
+You can create or modify song sheets using JSON. Each sheet consists of a list of key events and optional tempo changes.
+
+Example:
+
+```json
+{
+  "name": "Example Song",
+  "sampler": "piano",
+  "defaultBpm": 90,
+  "sheet": [
+    { "time": 0, "type": "key", "value": "C5" },
+    { "time": "+0.5", "type": "key", "value": "D5" },
+    { "time": "+0.5", "type": "key", "value": "E5" }
+  ]
+}
+```
+
+- `time`: Can be a number (absolute time in beats) or a string like `"+0.5"` to indicate relative time since the previous event.
+- `type`: Currently supports `"key"` (note trigger) and `"tempo"` (change BPM).
+- `value`: Note to play (e.g., `"C5"`), or new BPM for tempo events.
+
 ---
 
 ## 🎮 Controls
@@ -71,6 +97,9 @@ To tailor the behavior and appearance of **Sky Piano Lite**, you can modify the 
 
 - **Keyboard**  
   Use designated keys mapped to corresponding notes for efficient practice.
+
+- **Recording**  
+  Toggle recording mode to capture your live performance as a sheet, then save it as a JSON file.
 
 ---
 
@@ -88,6 +117,8 @@ To build the project for production:
 ```bash
 pnpm build
 ```
+
+Once running, use the record toggle button to capture your melody and use the save function to export the sheet.
 
 ---
 
