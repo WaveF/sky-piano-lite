@@ -46,7 +46,8 @@ html, body {
 }
 
 .sheet {
-  background: url(./sheet.svg) rgba(0,0,0,.5);
+  background-image: url(./sheet.svg);
+  background-color: rgba(0,0,0,.5);
   background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;

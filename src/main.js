@@ -22,7 +22,7 @@ createApp({
 
     const resp = await fetch('./pref.json')
     this.pref = await resp.json()
-    console.log(this.pref)
+    console.log('读取pref.json', this.pref)
 
     this.bgImage = this.pref.bgImage
     this.bgColor = this.pref.bgColor
