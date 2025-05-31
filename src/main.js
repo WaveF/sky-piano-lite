@@ -14,6 +14,9 @@ createApp({
   showNotes: true,
   currentNote: null,
   currentKey: null,
+  sheetList: [],
+  record: [],
+  isPlaying: false,
   async mounted(el) {
     this.root = el
 
@@ -88,12 +91,109 @@ createApp({
     this.currentNote = note
     sampler.triggerAttackRelease(note, "8n", Tone.now())
     nextTick(()=>{
-      console.log({
-        note: this.currentNote,
-        key: this.currentKey,
-      })
+      const step = JSON.stringify({time:this.record.length*0.5,type:'key',value:this.currentNote})
+      this.record.push(step)
+      console.clear()
+      console.log(this.record.join(',\n'))
     })
-    
+  },
+  async showSheetList() {
+    const resp = await fetch('./sheets.json')
+    this.sheetList = await resp.json()
+    console.log(this.sheetList)
+  },
+  async loadSheet() {
+    try {
+      const resp = await fetch('./sheets/song1.json')
+      if (!resp.ok) throw new Error('Response not ok')
+      const sheet = await resp.json()
+      console.log(sheet)
+      this.playSheet(sheet, true)
+    } catch (err) {
+      console.error('加载曲谱失败:', err)
+    }
+  },
+  async playSheet(json, animate = false) {
+    if (this.isPlaying) {
+      const transport = Tone.getTransport();
+      transport.stop();
+      transport.cancel();
+      transport.position = 0;
+      this.isPlaying = false;
+    }
+    const events = json.sheet;
+    let bpm = json.defaultBpm || 90;
+    let beatDuration = 60 / bpm;
+
+    // 获取 Transport 实例
+    const transport = Tone.getTransport();
+
+    // 为每个事件计算“绝对秒数”
+    let timeline = [];
+    let lastBpmChangeTime = 0;
+    let lastBpmChangeBeat = 0;
+
+    for (let i = 0; i < events.length; i++) {
+      const e = events[i];
+      let time;
+      if (typeof e.time === 'string' && e.time.startsWith('+')) {
+        const offset = parseFloat(e.time.slice(1));
+        time = (timeline.length > 0 ? timeline[timeline.length - 1].absoluteTime : 0) / beatDuration + offset;
+      } else {
+        time = e.time ?? i * 0.5;
+      }
+
+      // 如果是 tempo 改变事件，更新 bpm 和记录参考点
+      if (e.type === 'tempo') {
+        const absoluteTime = (time - lastBpmChangeBeat) * beatDuration + lastBpmChangeTime;
+        bpm = e.value;
+        beatDuration = 60 / bpm;
+        lastBpmChangeTime = absoluteTime;
+        lastBpmChangeBeat = time;
+        continue;
+      }
+
+      // 对于 key 播放事件，计算实际时间
+      const absoluteTime = (time - lastBpmChangeBeat) * beatDuration + lastBpmChangeTime;
+      timeline.push({ ...e, absoluteTime });
+    }
+
+    // 启动 Transport
+    transport.cancel(); // 清除旧计划
+    transport.bpm.value = json.defaultBpm;
+
+    transport.cancel(); // 清除旧计划
+    timeline.forEach(({ absoluteTime, value }) => {
+      transport.schedule(time => {
+        const notes = Array.isArray(value) ? value : [value];
+        notes.forEach(note => {
+          sampler.triggerAttackRelease(note, "8n", time);
+        });
+        if (animate) {
+          this.currentNote = notes[0];
+          const keyEntry = Object.entries(this.keyMap).find(([, note]) => note === notes[0]);
+          if (keyEntry) {
+            const [key] = keyEntry;
+            requestAnimationFrame(() => this.playNoteAnimate(key));
+          }
+        }
+      }, absoluteTime);
+    });
+
+    transport.stop();
+    transport.position = 0;
+
+    if (!transport.state || transport.state === "stopped") {
+      // 稍微延迟开始
+      transport.start("+0.01"); 
+      this.isPlaying = true;
+      if (timeline.length > 0) {
+        const lastTime = timeline[timeline.length - 1].absoluteTime;
+        transport.scheduleOnce(() => {
+          this.isPlaying = false;
+        }, lastTime + 1);
+      }
+    }
   },
   unmounted() {
     document.removeEventListener("keydown", this.onKeyDown)

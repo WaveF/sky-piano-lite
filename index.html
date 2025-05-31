@@ -16,6 +16,9 @@
       :style="{ background:`url(${bgImage}) center / cover no-repeat, ${bgColor}`}"
       @vue:mounted="mounted($el)"
       @vue:unmounted="unmounted">
+      <div class="fixed top-0 right-0 p-3">
+        <div class="sheet w-12 h-12 rounded-lg duration-100 opacity-75 active:opacity-50" @pointerdown="loadSheet"></div>
+      </div>
       <div :class="[`grid grid-cols-5 gap-4 duration-1000`, {'pointer-events-none opacity-30':!loaded}]">
         <template v-for="(value, key, index) in keyMap" :key="key">
           <div class="note flex w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"

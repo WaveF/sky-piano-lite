@@ -1,0 +1,18 @@
+{
+  "name": "MUSIC_NAME",
+  "author": "YOUR_NAME",
+  "email": "YOUR_EMAIL",
+  "sampler": "piano",
+  "defaultBpm": 90,
+  "sheet": [
+    { "time": 0, "type": "key", "value": ["C4"] },
+    { "time": "+0.3", "type": "key", "value": ["D4"] },
+    { "time": 1.0, "type": "key", "value": ["E4"] },
+    { "time": 2.5, "type": "tempo", "value": 200 },
+    { "time": 1.5, "type": "key", "value": ["F4"] },
+    { "time": 2.0, "type": "key", "value": ["G4"] },
+    { "time": 3.0, "type": "key", "value": ["E4"] },
+    { "time": 3.5, "type": "key", "value": ["F4"] },
+    { "time": 4.0, "type": "key", "value": ["G4"] }
+  ]
+}
