@@ -15,8 +15,11 @@ createApp({
   currentNote: null,
   currentKey: null,
   sheetList: [],
+  timer: null,
   record: [],
+  recordStart: 0,
   isPlaying: false,
+  isRecording: false,
   async mounted(el) {
     this.root = el
 
@@ -90,12 +93,16 @@ createApp({
   playNote(note) {
     this.currentNote = note
     sampler.triggerAttackRelease(note, "8n", Tone.now())
-    nextTick(()=>{
-      const step = JSON.stringify({time:this.record.length*0.5,type:'key',value:this.currentNote})
-      this.record.push(step)
-      console.clear()
-      console.log(this.record.join(',\n'))
-    })
+    if (this.isRecording) {
+      nextTick(()=>{
+        const current = Tone.now()
+        const time = +(current - this.recordStart).toFixed(3)
+
+        const step = JSON.stringify({time,type:'key',value:this.currentNote})
+        this.record.push(step)
+        console.log(step)
+      })
+    }
   },
   async showSheetList() {
     const resp = await fetch('./sheets.json')
@@ -104,7 +111,7 @@ createApp({
   },
   async loadSheet() {
     try {
-      const resp = await fetch('./sheets/song1.json')
+      const resp = await fetch('./sheets/song.json')
       if (!resp.ok) throw new Error('Response not ok')
       const sheet = await resp.json()
       console.log(sheet)
@@ -194,6 +201,43 @@ createApp({
         }, lastTime + 1);
       }
     }
+  },
+  toggleRecording() {
+    this.isRecording = !this.isRecording
+    if (this.isRecording) {
+      this.record = []
+      this.recordStart = Tone.now()
+      this.timer = null
+    } else {
+      // 将记录的按键队列打印到控制台，就可以直接复制到琴谱的json里
+      // console.log(this.record.join(',\n'))
+      let lastTime = 0;
+      const relativeSheet = this.record.map((entry, i) => {
+        const { time, ...rest } = JSON.parse(entry);
+        const relTime = i === 0 ? 0 : +(time - lastTime).toFixed(3);
+        lastTime = time;
+        return JSON.stringify({ time: i === 0 ? 0 : `+${relTime}`, ...rest });
+      })
+      console.log(relativeSheet.join(',\n'))
+      this.saveSongFile(relativeSheet)
+    }
+  },
+  saveSongFile(sheet) {
+    const fileContent = {
+      name: '录制的曲谱',
+      author: '',
+      email: '',
+      sampler: 'piano',
+      defaultBpm: this.pref?.defaultBpm || 60,
+      sheet: sheet.map(s => JSON.parse(s)),
+    };
+    const blob = new Blob([JSON.stringify(fileContent, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'song.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   },
   unmounted() {
     document.removeEventListener("keydown", this.onKeyDown)

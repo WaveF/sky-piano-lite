@@ -1,0 +1,44 @@
+{
+  "name": "录制的曲谱",
+  "author": "",
+  "email": "",
+  "sampler": "piano",
+  "defaultBpm": 60,
+  "sheet": [
+    {
+      "time": 0,
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.134",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.203",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.186",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.215",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+2.414",
+      "type": "key",
+      "value": "A5"
+    },
+    {
+      "time": "+0.476",
+      "type": "key",
+      "value": "B5"
+    }
+  ]
+}

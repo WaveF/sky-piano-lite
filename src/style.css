@@ -52,3 +52,15 @@ html, body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.rec {
+  background-image: url(./record.svg);
+  background-color: rgba(0,0,0,.5);
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.recording {
+  background-color: rgba(255, 227, 186, .4);
+}

@@ -1,0 +1,16 @@
+{
+  "name": "测试",
+  "author": "",
+  "email": "",
+  "sampler": "piano",
+  "defaultBpm": 60,
+  "sheet": [
+    {"time":0,"type":"key","value":"G5"},
+    {"time":"+0.813","type":"key","value":"E5"},
+    {"time":"+0.214","type":"key","value":"F5"},
+    {"time":"+0.087","type":"key","value":"G5"},
+    {"time":"+0.5","type":"key","value":"E5"},
+    {"time":"+0.267","type":"key","value":"F5"}
+  ]
+}
+
