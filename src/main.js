@@ -108,7 +108,7 @@ createApp({
     }
   },
   async showSheetList() {
-    const resp = await fetch('./sheets.json')
+    const resp = await fetch('./sheets.json?v=' + Date.now())
     this.sheetList = await resp.json()
     console.log(this.sheetList)
     this.isShowSheet = true
