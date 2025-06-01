@@ -135,7 +135,7 @@ createApp({
   },
   async loadSheet(sheetUrl) {
     try {
-      const resp = await fetch(sheetUrl)
+      const resp = await fetch(sheetUrl + '?v=' + Date.now)
       if (!resp.ok) throw new Error('Response not ok')
       const sheet = await resp.json()
       console.log(sheet)
