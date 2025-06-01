@@ -40,7 +40,8 @@
         </template>
       </div>
 
-      <div v-if="isShowSheet" class="fixed w-full h-full top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur">
+      <div v-if="isShowSheet" class="fixed w-full h-full top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur"
+        @pointerdown="onBackdropClick">
         <div class="grid grid-cols-5 gap-4 duration-1000">
           <div class="sheet-btn flex flex-col w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
             @click="pickCustomSheet">

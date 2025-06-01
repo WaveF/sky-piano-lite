@@ -264,6 +264,12 @@ createApp({
     a.click();
     document.body.removeChild(a);
   },
+  onBackdropClick(e) {
+    // 只有点击到 backdrop 自身时才关闭（不是子按钮）
+    if (e.target === e.currentTarget) {
+      this.isShowSheet = false
+    }
+  },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)
   }
