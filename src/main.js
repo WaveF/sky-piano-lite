@@ -102,6 +102,8 @@ createApp({
         this.record.push(step)
         console.log(step)
       })
+    } else {
+      console.log(note)
     }
   },
   async showSheetList() {
