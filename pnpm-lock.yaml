@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      animejs:
+        specifier: ^4.0.2
+        version: 4.0.2
       petite-vue:
         specifier: ^0.4.1
         version: 0.4.1
@@ -289,6 +292,9 @@ packages:
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
 
+  animejs@4.0.2:
+    resolution: {integrity: sha512-f0L/kSya2RF23iMSF/VO01pMmLwlAFoiQeNAvBXhEyLzIPd2/QTBRatwGUqkVCC6seaAJYzAkGir55N4SL+h3A==}
+
   automation-events@7.1.10:
     resolution: {integrity: sha512-fO/uRe4vhoTgZUMVYqScmXWQM9dRG6iXn6zmS7XGESx83V2vSpoLenJR6BlWxRLz4RLN5zcCcJp+p4bdI9s4Yw==}
     engines: {node: '>=18.2.0'}
@@ -532,6 +538,8 @@ snapshots:
     optional: true
 
   '@types/estree@1.0.7': {}
+
+  animejs@4.0.2: {}
 
   automation-events@7.1.10:
     dependencies:

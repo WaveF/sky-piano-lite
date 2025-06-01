@@ -1,5 +1,6 @@
 import './style.css'
 import { createApp, nextTick } from 'petite-vue'
+import { animate, stagger, utils } from 'animejs';
 import * as Tone from 'tone'
 
 let sampler = null
@@ -74,21 +75,17 @@ createApp({
     this.currentKey = key
 
     const btn = this.root.querySelector(`[data-key="${key}"]`)
-    btn.animate([
-      { transform: 'scale(0.8)', offset:0 },
-      { transform: 'scale(1)', offset: 1 }
-    ], {
+    animate(btn, {
+      scale: [0.81, 0.8, 1],
       duration: 300,
-      easing: 'ease-in-out'
+      easing: 'outCubic'
     })
 
     const icon = btn.querySelector(".icon")
-    icon.animate([
-      { transform: 'rotateY(0deg)', offset: 0 },
-      { transform: 'rotateY(360deg)', offset: 0 },
-    ], {
+    animate(icon, {
+      rotateY: [0, 360],
       duration: 700,
-      easing: 'ease-in-out'
+      easing: 'outCubic'
     })
   },
   playNote(note) {
@@ -112,6 +109,34 @@ createApp({
     this.sheetList = await resp.json()
     console.log(this.sheetList)
     this.isShowSheet = true
+
+    nextTick(()=>{
+      const backdrop = this.root.querySelector('.backdrop')
+      animate(backdrop, {
+        opacity: [0, 1],
+        duration: 300
+      })
+      const sheetBtns = this.root.querySelectorAll('.sheet-btn')
+      animate(sheetBtns, {
+        opacity: [0, 1],
+        scale: [0, 1],
+        delay: stagger(100),
+        duration: 300
+      })
+    })
+  },
+  hideSheetList(e) {
+    // 只有点击到 backdrop 自身时才关闭（不是子按钮）
+    if (e.target === e.currentTarget) {
+      const backdrop = this.root.querySelector('.backdrop')
+      animate(backdrop, {
+        opacity: [1, 0],
+        duration: 300,
+        onComplete: (self)=>{
+          this.isShowSheet = false
+        }
+      })
+    }
   },
   async pickCustomSheet() {
     try {
@@ -264,15 +289,10 @@ createApp({
     a.click();
     document.body.removeChild(a);
   },
-  onBackdropClick(e) {
-    // 只有点击到 backdrop 自身时才关闭（不是子按钮）
-    if (e.target === e.currentTarget) {
-      this.isShowSheet = false
-    }
-  },
   async playResumeAudio() {
     await Tone.start()
-    const audio = document.querySelector('#resume').play()
+    const audio = this.root.querySelector('#resume')
+    console.log(audio)
     audio.volume = 0.8
     audio.play()
   },
