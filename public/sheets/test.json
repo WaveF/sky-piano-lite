@@ -1,16 +1,729 @@
 {
-  "name": "测试",
+  "name": "录制的曲谱",
   "author": "",
   "email": "",
   "sampler": "piano",
   "defaultBpm": 60,
   "sheet": [
-    {"time":0,"type":"key","value":"G5"},
-    {"time":"+0.813","type":"key","value":"E5"},
-    {"time":"+0.214","type":"key","value":"F5"},
-    {"time":"+0.087","type":"key","value":"G5"},
-    {"time":"+0.5","type":"key","value":"E5"},
-    {"time":"+0.267","type":"key","value":"F5"}
+    {
+      "time": 0,
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.406",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.517",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.18",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.261",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.563",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.267",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.471",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.127",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.343",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.673",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.203",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.767",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.162",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.279",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.476",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.464",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.238",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.227",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.244",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.272",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.209",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.256",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.162",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.36",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.993",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.493",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.25",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.499",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.61",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.226",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.459",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.459",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.255",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.209",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.482",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.232",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.343",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.818",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.244",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.319",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.505",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.482",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.302",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.412",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.435",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.471",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.232",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.313",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.482",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.209",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.279",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.168",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.261",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.906",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.215",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.29",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.435",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.285",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.232",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.22",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.308",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.453",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.261",
+      "type": "key",
+      "value": "A5"
+    },
+    {
+      "time": "+0.198",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.255",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.244",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.516",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.204",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.214",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.273",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.25",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.493",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.227",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.197",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.284",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.227",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.493",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.459",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.203",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.261",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.465",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.226",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.25",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.226",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.226",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.279",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.285",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.975",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.203",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.313",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.459",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.447",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.464",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.256",
+      "type": "key",
+      "value": "A5"
+    },
+    {
+      "time": "+0.145",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.267",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.215",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.511",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.464",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.493",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.209",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.157",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.29",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.169",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.29",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.284",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.482",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.215",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.261",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.267",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.383",
+      "type": "key",
+      "value": "G4"
+    },
+    {
+      "time": "+0.488",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.238",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.302",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.47",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.25",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.232",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.197",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.238",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.877",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.25",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.325",
+      "type": "key",
+      "value": "A4"
+    },
+    {
+      "time": "+0.464",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.807",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.308",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.621",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.458",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.54",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.523",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.551",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.615",
+      "type": "key",
+      "value": "B4"
+    },
+    {
+      "time": "+0.662",
+      "type": "key",
+      "value": "C5"
+    }
   ]
 }
-

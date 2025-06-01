@@ -18,6 +18,7 @@ createApp({
   timer: null,
   record: [],
   recordStart: 0,
+  isShowSheet: false,
   isPlaying: false,
   isRecording: false,
   async mounted(el) {
@@ -110,10 +111,31 @@ createApp({
     const resp = await fetch('./sheets.json')
     this.sheetList = await resp.json()
     console.log(this.sheetList)
+    this.isShowSheet = true
   },
-  async loadSheet() {
+  async pickCustomSheet() {
     try {
-      const resp = await fetch('./sheets/music.json')
+      const [fileHandle] = await window.showOpenFilePicker({
+        types: [
+          {
+            description: 'JSON Files',
+            accept: { 'application/json': ['.json'] },
+          },
+        ],
+        multiple: false
+      });
+      const file = await fileHandle.getFile();
+      const text = await file.text();
+      const json = JSON.parse(text);
+      this.playSheet(json, true);
+    } catch (err) {
+      console.error('无法加载本地曲谱:', err);
+    }
+    this.isShowSheet = false
+  },
+  async loadSheet(sheetUrl) {
+    try {
+      const resp = await fetch(sheetUrl)
       if (!resp.ok) throw new Error('Response not ok')
       const sheet = await resp.json()
       console.log(sheet)
@@ -121,6 +143,7 @@ createApp({
     } catch (err) {
       console.error('加载曲谱失败:', err)
     }
+    this.isShowSheet = false
   },
   async playSheet(json, animate = false) {
     if (this.isPlaying) {

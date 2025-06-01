@@ -1,3 +1,6 @@
 [
-  { "name": "Sheet 1", "sheet": "sheets/song1.json" }
+  { "name": "小星星", "sheet": "sheets/小星星.json" },
+  { "name": "雨林",   "sheet": "sheets/雨林.json" },
+  { "name": "录制的曲谱", "sheet": "sheets/music.json" },
+  { "name": "测试", "sheet": "sheets/test.json" }
 ]

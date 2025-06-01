@@ -23,9 +23,12 @@
       @vue:mounted="mounted($el)"
       @vue:unmounted="unmounted">
       <div class="fixed top-0 right-0 flex gap-2 p-3">
-        <div :class="[`rec w-12 h-12 rounded-lg duration-100 active:scale-90`, {'recording':isRecording}]" @pointerdown="toggleRecording"></div>
-        <div class="sheet w-12 h-12 rounded-lg duration-100 active:scale-90" @pointerdown="loadSheet"></div>
+        <div class="sheet w-12 h-12 rounded-lg duration-100 active:scale-90" @pointerdown="showSheetList"></div>
       </div>
+      <div class="fixed bottom-0 right-0 flex gap-2 p-3">
+        <div :class="[`rec w-12 h-12 rounded-lg duration-100 active:scale-90`, {'recording':isRecording}]" @pointerdown="toggleRecording"></div>
+      </div>
+
       <div :class="[`grid grid-cols-5 gap-4 duration-1000`, {'pointer-events-none opacity-30':!loaded}]">
         <template v-for="(value, key, index) in keyMap" :key="key">
           <div class="note flex w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
@@ -36,8 +39,25 @@
           </div>
         </template>
       </div>
+
+      <div v-if="isShowSheet" class="fixed w-full h-full top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur">
+        <div class="grid grid-cols-5 gap-4 duration-1000">
+          <div class="sheet-btn flex flex-col w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
+            @click="pickCustomSheet">
+            <span class="text-xs">选择文件</span>
+            <div class="icon flex justify-center items-center w-full h-full mix-blend-lighten pointer-events-none"></div>
+          </div>
+          <template v-for="(item, index) in sheetList">
+            <div class="sheet-btn flex flex-col w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
+              @click="loadSheet(item.sheet)">
+              <span class="text-xs">{{item.name}}</span>
+              <div class="icon flex justify-center items-center w-full h-full mix-blend-lighten pointer-events-none"></div>
+            </div>
+          </template>
+        </div>
+      </div>
     
-      <span class="fixed bottom-0 text-xs text-white py-2 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @click="location.reload">No sound? Click here to reload.<span>
+      <span class="fixed bottom-0 text-xs text-white py-2 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @click="location.reload">没有声音? 请试试刷新.<span>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

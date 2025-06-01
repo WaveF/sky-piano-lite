@@ -53,6 +53,13 @@ html, body {
   background-repeat: no-repeat;
 }
 
+.sheet-btn .icon {
+  background-image: url(./sheet.svg);
+  background-size: 80%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .rec {
   background-image: url(./record.svg);
   background-color: rgba(0,0,0,.5);
