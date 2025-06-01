@@ -270,6 +270,12 @@ createApp({
       this.isShowSheet = false
     }
   },
+  async playResumeAudio() {
+    await Tone.start()
+    const audio = document.querySelector('#resume').play()
+    audio.volume = 0.8
+    audio.play()
+  },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)
   }

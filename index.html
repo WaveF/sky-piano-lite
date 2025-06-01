@@ -40,7 +40,7 @@
         </template>
       </div>
 
-      <div v-if="isShowSheet" class="fixed w-full h-full top-0 left-0 flex justify-center items-center bg-black/50 backdrop-blur"
+      <div v-if="isShowSheet" class="fixed w-full h-full top-0 left-0 flex justify-center items-center px-4 bg-black/50 backdrop-blur"
         @pointerdown="onBackdropClick">
         <div class="grid grid-cols-5 gap-4 duration-1000">
           <div class="sheet-btn flex flex-col w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer duration-100"
@@ -58,7 +58,8 @@
         </div>
       </div>
     
-      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @click="location.reload">没有声音? 请试试刷新.<span>
+      <audio id="resume" src="/resume.mp3" preload="auto"></audio>
+      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="playResumeAudio">没有声音? 请试试点击这里.<span>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
