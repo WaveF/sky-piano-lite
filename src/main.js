@@ -1,9 +1,11 @@
 import './style.css'
 import { createApp, nextTick } from 'petite-vue'
-import { animate, stagger } from 'animejs';
+import { animate, stagger, utils } from 'animejs';
 import * as Tone from 'tone'
+import jsonbin from 'jsonbin-io'
 
 let sampler = null
+const bin = new jsonbin('683d3d3d8a456b7966a8567f')
 
 createApp({
   root: null,
@@ -21,6 +23,7 @@ createApp({
   isSheetListShowing: false,
   isPlaying: false,
   isRecording: false,
+  likes: '...',
   set lastRecord(json) {
     localStorage.setItem('LAST_RECORD', JSON.stringify(json))
   },
@@ -31,6 +34,8 @@ createApp({
     this.root = el
     console.clear()
     console.log('visit -> https://github.com/WaveF/sky-piano-lite')
+
+    this.updateLikes()
 
     const resp = await fetch('./pref.json')
     this.pref = await resp.json()
@@ -59,6 +64,21 @@ createApp({
     await Tone.loaded()
     await Tone.start() // 确保 AudioContext resume
     sampler.triggerAttackRelease("C4", "8n", undefined, 0)
+
+    const [candle, heart] = [
+      this.root.querySelector('.candle'),
+      this.root.querySelector('.heart')
+    ]
+
+    nextTick(()=>{
+      animate([candle,heart], {
+        scaleY: [.5, 1],
+        duration: 1200,
+        loopDelay: 1000,
+        loop: true,
+        ease: 'outElastic'
+      })
+    })
 
     // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
@@ -324,6 +344,30 @@ createApp({
     console.log(audio)
     audio.volume = 0.8
     audio.play()
+  },
+  showMsg(msg) {
+    const modal = document.querySelector('#modal')
+    if (!modal) return
+    const p = modal.querySelector('p')
+    p.innerHTML = msg
+    modal.showModal()
+  },
+  async onLikeClicked() {
+    await bin.update({likes: this.likes+1})
+    this.updateLikes()
+  },
+  async updateLikes() {
+    const data = await bin.read()
+    this.likes = data.record.likes
+  },
+  onCandleClicked() {
+    this.showMsg(`
+      <h2 class="text-lg font-medium">Github</h2>
+      <a href="https://github.com/WaveF/sky-piano-lite/" target="_blank">https://github.com/WaveF/sky-piano-lite</a>
+      
+      <h2 class="text-lg font-medium mt-4">Gitee</h2>
+      <a href="https://gitee.com/wavef/sky-piano-lite" target="_blank">https://gitee.com/wavef/sky-piano-lite</a>
+    `)
   },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)

@@ -16,6 +16,7 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   -webkit-user-drag: none;
+  color: #FFE3BA;
 }
 
 html, body {
@@ -43,6 +44,18 @@ html, body {
 .note:nth-child(8) .icon,
 .note:nth-child(15) .icon {
   background-image: url(./images/type-1.svg);
+}
+
+.candle {
+  background-image: url(./images/candle.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.heart {
+  background-image: url(./images/heart.svg);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .sheet {

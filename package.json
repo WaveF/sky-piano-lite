@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "animejs": "^4.0.2",
+    "jsonbin-io": "^1.0.0",
     "petite-vue": "^0.4.1",
     "tone": "^15.1.22"
   }
