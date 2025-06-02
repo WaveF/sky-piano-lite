@@ -23,6 +23,7 @@ createApp({
   isRecording: false,
   async mounted(el) {
     this.root = el
+    console.clear()
     console.log('visit -> https://github.com/WaveF/sky-piano-lite')
 
     const resp = await fetch('./pref.json')
@@ -37,7 +38,8 @@ createApp({
     const sampleUrls = {}
     this.keyMap = {}
     this.pref.samples.forEach(item => {
-      sampleUrls[item.note] = item.sample
+      const url = `./samples/${this.pref.instrument}/${item.sample}`
+      sampleUrls[item.note] = url
       this.keyMap[item.key] = item.note
     })
     

@@ -25,7 +25,7 @@ html, body {
 }
 
 .note .icon {
-  background-image: url(./type-3.svg);
+  background-image: url(./images/type-3.svg);
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -36,17 +36,17 @@ html, body {
 .note:nth-child(9) .icon,
 .note:nth-child(12) .icon,
 .note:nth-child(14) .icon {
-  background-image: url(./type-2.svg);
+  background-image: url(./images/type-2.svg);
 }
 
 .note:nth-child(1) .icon,
 .note:nth-child(8) .icon,
 .note:nth-child(15) .icon {
-  background-image: url(./type-1.svg);
+  background-image: url(./images/type-1.svg);
 }
 
 .sheet {
-  background-image: url(./sheet.svg);
+  background-image: url(./images/sheet.svg);
   background-color: rgba(0,0,0,.5);
   background-size: 80%;
   background-position: center;
@@ -54,14 +54,14 @@ html, body {
 }
 
 .sheet-btn .icon {
-  background-image: url(./sheet.svg);
+  background-image: url(./images/sheet.svg);
   background-size: 80%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .rec {
-  background-image: url(./record.svg);
+  background-image: url(./images/record.svg);
   background-color: rgba(0,0,0,.5);
   background-size: 80%;
   background-position: center;
