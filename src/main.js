@@ -1,6 +1,6 @@
 import './style.css'
 import { createApp, nextTick } from 'petite-vue'
-import { animate, stagger, utils } from 'animejs';
+import { animate, stagger } from 'animejs';
 import * as Tone from 'tone'
 
 let sampler = null
@@ -24,6 +24,7 @@ createApp({
   isRecording: false,
   async mounted(el) {
     this.root = el
+    console.log('visit -> https://github.com/WaveF/sky-piano-lite')
 
     const resp = await fetch('./pref.json')
     this.pref = await resp.json()
@@ -76,7 +77,7 @@ createApp({
 
     const btn = this.root.querySelector(`[data-key="${key}"]`)
     animate(btn, {
-      scale: [0.81, 0.8, 1],
+      scale: [1, 0.8, 1],
       duration: 300,
       easing: 'outCubic'
     })
@@ -260,7 +261,7 @@ createApp({
       this.timer = null
     } else {
       // console.log(this.record.join(',\n'))
-      // 默认记录绝对时间值，下面会转为相对时间值（以后可以根据时间差值把多键同时按下编进数组里）
+      // 默认记录绝对时间值，下面会转为相对时间值
       let lastTime = 0;
       const relativeSheet = this.record.map((entry, i) => {
         const { time, ...rest } = JSON.parse(entry);
