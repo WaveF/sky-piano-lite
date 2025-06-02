@@ -21,6 +21,12 @@ createApp({
   isSheetListShowing: false,
   isPlaying: false,
   isRecording: false,
+  set lastRecord(json) {
+    localStorage.setItem('LAST_RECORD', JSON.stringify(json))
+  },
+  get lastRecord() {
+    return JSON.parse(localStorage.getItem('LAST_RECORD')) || {}
+  },
   async mounted(el) {
     this.root = el
     console.clear()
@@ -181,6 +187,11 @@ createApp({
     }
     this.isSheetListShowing = false
   },
+  // 播放最后一次录制的曲谱
+  playLastRecord() {
+    this.playSheet(this.lastRecord, true)
+    this.isSheetListShowing = false
+  },
   // 播放曲谱
   async playSheet(json, animate = false) {
     if (this.isPlaying) {
@@ -281,19 +292,23 @@ createApp({
         return JSON.stringify({ time: i === 0 ? 0 : `+${relTime}`, ...rest });
       })
       console.log(relativeSheet.join(',\n'))
+      this.lastRecord = this.createSheetJson(relativeSheet)
       this.saveSheetFile(relativeSheet)
     }
   },
-  // 保存曲谱
-  saveSheetFile(sheet) {
-    const fileContent = {
+  createSheetJson(sheet) {
+    return {
       name: '录制的曲谱',
       author: '',
       email: '',
       sampler: 'piano',
       defaultBpm: this.pref?.defaultBpm || 60,
       sheet: sheet.map(s => JSON.parse(s)),
-    };
+    }
+  },
+  // 保存曲谱
+  saveSheetFile(sheet) {
+    const fileContent = this.createSheetJson(sheet)
     const blob = new Blob([JSON.stringify(fileContent, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
