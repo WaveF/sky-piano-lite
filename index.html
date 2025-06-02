@@ -26,9 +26,11 @@
       <!-- 顶部按钮 -->
       <div class="fixed top-0 left-0 w-full flex justify-between p-3">
         <div class="flex gap-2">
-          <div class="candle w-12 h-12 rounded-lg" @pointerdown="onCandleClicked"></div>
+          <div class="candle w-12 h-12 rounded-lg" @pointerdown="onCandleClicked">
+            <span class="absolute -bottom-1 left-9 pointer-events-none">888</span>
+          </div>
           <div class="heart relative w-12 h-12 rounded-lg" @pointerdown="onLikeClicked">
-            <span class="absolute -bottom-1 right-1">{{likes}}</span>
+            <span class="absolute -bottom-1 left-9 pointer-events-none">{{likes}}</span>
           </div>
         </div>
         <div class="flex gap-2">
@@ -78,8 +80,8 @@
       <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="resumeAudio">没有声音? 请试试点击这里.</span>
     </div>
 
-    <dialog id="modal" class="w-[fit-content] min-w-[350px] p-0 rounded-xl bg-black/90 duration-300">
-      <div class="p-8">
+    <dialog id="modal" class="w-[fit-content] min-w-[350px] p-0 rounded-xl bg-black/50 backdrop-blur duration-300">
+      <div class="py-6 px-8">
         <p class="text-sm"></p>
       </div>
       <button class="absolute top-0 right-0 w-8 h-8 text-xl !outline-none" @pointerdown="hideMsg">×</button>

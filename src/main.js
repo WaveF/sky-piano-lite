@@ -340,11 +340,18 @@ createApp({
     const fileContent = this.createSheetJson(sheet)
     const blob = new Blob([JSON.stringify(fileContent, null, 2)], { type: 'application/json' });
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
+    a.href = url;
     a.download = 'music.json';
+    a.style.display = 'none';
+    a.target = '_blank';
+    a.rel = 'noopener';
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
   },
   // 恢复声音
   async resumeAudio() {
@@ -376,11 +383,23 @@ createApp({
   },
   onCandleClicked() {
     this.showMsg(`
-      <h2 class="text-lg font-medium">Github</h2>
-      <a href="https://github.com/WaveF/sky-piano-lite/" target="_blank">https://github.com/WaveF/sky-piano-lite</a>
-      
-      <h2 class="text-lg font-medium mt-4">Gitee</h2>
-      <a href="https://gitee.com/wavef/sky-piano-lite" target="_blank">https://gitee.com/wavef/sky-piano-lite</a>
+      <div class="flex flex-col">
+        <h2 class="text-lg font-medium">说明</h2>
+        <ol class="list-decimal list-inside">
+          <li>在手机或电脑上点击琴键开始演奏</li>
+          <li>在电脑上按 "<span class="font-mono">12345,QWERT,ASDFG</span>" 演奏</li>
+          <li>点击右下角图标录制曲谱，再次点击可结束录制</li>
+          <li>录制后会自动下载曲谱，曲谱清单里可重播最近一次录制</li>
+          <li>如果光崽们有录好的曲谱可发送至 <a class="font-mono" href="mailto:wavef@live.com">wavef@live.com</a></li>
+          <li>手机锁屏可能会由于电池策略导致失声，需多按一下或刷新</li>
+        </ol>
+
+        <h2 class="text-lg font-medium mt-4">源码</h2>
+        <ul class="font-mono text-xs">
+          <li><a href="https://github.com/WaveF/sky-piano-lite/" target="_blank">https://github.com/WaveF/sky-piano-lite</a></li>
+          <li><a href="https://gitee.com/wavef/sky-piano-lite" target="_blank">https://gitee.com/wavef/sky-piano-lite</a></li>
+        </ul>
+      </div>
     `)
   },
   unmounted() {
