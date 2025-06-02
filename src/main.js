@@ -44,7 +44,7 @@ createApp({
     const sampleUrls = {}
     this.keyMap = {}
     this.pref.samples.forEach(item => {
-      const url = `./samples/${this.pref.instrument}/${item.sample}`
+      const url = `./samples/${this.pref.instrument}/${item.audio}`
       sampleUrls[item.note] = url
       this.keyMap[item.key] = item.note
     })
