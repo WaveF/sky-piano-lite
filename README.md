@@ -1,79 +1,83 @@
 # Sky Piano Lite
 
-**Sky Piano Lite** is a lightweight web-based piano simulator inspired by *Sky: Children of the Light*. It allows players to practice and enjoy the musical instruments from the game directly in their browser.
+🌐 语言: [中文](README.md) | [English](README.en.md)
+
+**Sky Piano Lite** 是一款轻量级的网页版钢琴模拟器，灵感来自游戏 *Sky 光·遇*。  
+你可以直接在浏览器中练习和演奏游戏中的乐器。
 
 ![sky-piano-lite-screenshot](screenshot.jpg)
 
 ---
 
-## ✨ Features
+## ✨ 功能亮点
 
-- **Responsive Design**  
-  Optimized for both desktop and mobile devices, ensuring a seamless experience across platforms.
+- **响应式设计**  
+  无需安装，跨平台畅玩，在网页浏览器即可运行。
 
-- **Visual Feedback**  
-  Interactive animations provide immediate visual responses to your inputs.
+- **可视化反馈**  
+  输入操作后有即时动画反馈，提升演奏手感。
 
-- **Customizable Background**  
-  Personalize your experience by setting your preferred background image and color.
+- **可自定义背景**  
+  可设置你喜欢的背景图片和颜色，打造专属风格。
 
-- **Note Display Toggle**  
-  Option to show or hide note labels, catering to both beginners and advanced players.
+- **音符标签显示切换**  
+  可选是否显示琴键上的音符标签，适合新手和进阶玩家。
 
-- **Realistic Sound**  
-  Utilizes the Tone.js library for authentic instrument sounds.
+- **真实音效**  
+  使用 Tone.js 库模拟真实乐器音色。
 
-- **Keyboard Support**  
-  Play notes using your computer keyboard for a more tactile experience.
+- **键盘支持**  
+  使用电脑键盘快速演奏，更高效地练习。
 
-- **Sheet Recording and Playback**  
-  Record your key presses in real time and export them as a playable sheet. Playback functionality allows you to rehearse or share melodies easily.
+- **乐谱录制与回放**  
+  实时记录你的演奏，并自动导出乐谱文件；支持回放练习和分享旋律。
 
 ---
 
-## ⚙️ Customizing Configuration via `pref.json`
+## ⚙️ 使用 `pref.json` 自定义配置
 
-To tailor the behavior and appearance of **Sky Piano Lite**, you can modify the `pref.json` configuration file located in the project's root directory.
+你可以通过修改项目根目录下的 `pref.json` 文件，调整行为和外观。
 
-### Available Settings
+### 可配置项
 
-- **Background Image and Color**
-  - `bgImage`: Path to your desired background image.
-  - `bgColor`: Background color overlay in HEX format (e.g., `#1a1a1a`).
+- **背景设置**
+  - `bgImage`: 背景图片路径。
+  - `bgColor`: 背景遮罩颜色（HEX 格式，如 `#1a1a1a`）。
 
-- **Note Display Toggle**
-  - `showNotes`: Set to `true` to display note labels on keys, or `false` to hide them.
+- **琴键标签**
+  - `showNotes`: 是否显示琴键上的音符标签，`true` 显示，`false` 隐藏。
 
-- **Sample Configuration**
-  - `samples`: An array mapping keyboard keys to musical notes and their corresponding audio samples.
+- **音符样本映射**
+  - `samples`: 键盘按键与音符及音频文件的映射数组。
 
-### Example `pref.json` Structure
+### 示例 `pref.json` 内容
 
 ```json
 {
   "bgImage": "assets/background.jpg",
   "bgColor": "#1a1a1a",
   "showNotes": true,
+  "instrument": "piano",
   "samples": [
     { "key": "a", "note": "C4", "sample": "C4.mp3" },
     { "key": "s", "note": "D4", "sample": "D4.mp3" },
     { "key": "d", "note": "E4", "sample": "E4.mp3" }
-    // Add more key-note-sample mappings as needed
+    // 根据需要添加更多映射
   ]
 }
 ```
 
-**Note:** Ensure that the paths to images and audio samples are correct and that the files exist in the specified locations.
+> ✅ 确保路径正确，所引用的图片与音频文件已存在。
 
-### Sheet File Format
+---
 
-You can create or modify song sheets using JSON. Each sheet consists of a list of key events and optional tempo changes.
+## 🎵 乐谱文件格式说明
 
-Example:
+你可以创建或编辑 JSON 格式的乐谱，用于自动演奏。结构示例如下：
 
 ```json
 {
-  "name": "Example Song",
+  "name": "示例乐曲",
   "sampler": "piano",
   "defaultBpm": 90,
   "sheet": [
@@ -84,44 +88,46 @@ Example:
 }
 ```
 
-- `time`: Can be a number (absolute time in beats) or a string like `"+0.5"` to indicate relative time since the previous event.
-- `type`: Currently supports `"key"` (note trigger) and `"tempo"` (change BPM).
-- `value`: Note to play (e.g., `"C5"`), or new BPM for tempo events.
+字段说明：
+
+- `time`: 时间戳，支持绝对数值（节拍）或相对时间（如 `"+0.5"`）。
+- `type`: 当前支持 `"key"`（弹奏音符）和 `"tempo"`（变更节奏）。
+- `value`: 要弹奏的音符（如 `"C5"`）或新的 BPM 值（用于节奏事件）。
 
 ---
 
-## 🎮 Controls
+## 🎮 控制方式
 
-- **Mouse/Touch**  
-  Click or tap on the on-screen keys to play notes.
+- **鼠标/触控**  
+  点击或触摸屏幕上的琴键即可演奏。
 
-- **Keyboard**  
-  Use designated keys mapped to corresponding notes for efficient practice.
+- **键盘模式**  
+  使用键盘映射的按键进行快速演奏。
 
-- **Recording**  
-  Toggle recording mode to capture your live performance as a sheet, then save it as a JSON file.
+- **录制功能**  
+  开启录制模式可记录实时演奏，并保存为 JSON 乐谱文件。
 
 ---
 
-## 🚀 Getting Started
+## 🚀 本地运行
 
-To run the project locally:
+### 安装依赖并启动开发服务器：
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-To build the project for production:
+### 构建生产版本：
 
 ```bash
 pnpm build
 ```
 
-Once running, use the record toggle button to capture your melody and use the save function to export the sheet.
+运行后点击界面上的录制按钮进行演奏录制，并使用保存按钮导出你的乐谱。
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+本项目采用 [MIT License](LICENSE) 授权开源。
