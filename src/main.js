@@ -16,10 +16,9 @@ createApp({
   currentNote: null,
   currentKey: null,
   sheetList: [],
-  timer: null,
   record: [],
   recordStart: 0,
-  isShowSheet: false,
+  isSheetListShowing: false,
   isPlaying: false,
   isRecording: false,
   async mounted(el) {
@@ -57,14 +56,17 @@ createApp({
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
     document.addEventListener("keydown", this.onPianoKeyDown.bind(this))
   },
+  // 音键双击
   onPianoDblClick(e) {
     console.log('ignore dblclick')
   },
+  // 音键单击
   onPianoPointerDown(e) {
     const key = e.currentTarget.dataset.key
     this.playNote(this.keyMap[e.currentTarget.dataset.key])
     requestAnimationFrame(() => this.playNoteAnimate(key))
   },
+  // 音键按键
   onPianoKeyDown(e) {
     const key = e.key
     if (!e.repeat && this.keyMap[key]) {
@@ -72,6 +74,7 @@ createApp({
       requestAnimationFrame(() => this.playNoteAnimate(key))
     }
   },
+  // 播放音键动画
   playNoteAnimate(key) {
     this.currentKey = key
 
@@ -89,6 +92,7 @@ createApp({
       easing: 'outCubic'
     })
   },
+  // 播放音键声音
   playNote(note) {
     this.currentNote = note
     sampler.triggerAttackRelease(note, "8n", Tone.now())
@@ -105,11 +109,12 @@ createApp({
       console.log(note)
     }
   },
+  // 显示曲谱列表
   async showSheetList() {
     const resp = await fetch('./sheets.json?v=' + Date.now())
     this.sheetList = await resp.json()
     console.log(this.sheetList)
-    this.isShowSheet = true
+    this.isSheetListShowing = true
 
     nextTick(()=>{
       const backdrop = this.root.querySelector('.backdrop')
@@ -126,6 +131,7 @@ createApp({
       })
     })
   },
+  // 隐藏曲谱列表
   hideSheetList(e) {
     // 只有点击到 backdrop 自身时才关闭（不是子按钮）
     if (e.target === e.currentTarget) {
@@ -134,12 +140,13 @@ createApp({
         opacity: [1, 0],
         duration: 300,
         onComplete: (self)=>{
-          this.isShowSheet = false
+          this.isSheetListShowing = false
         }
       })
     }
   },
-  async pickCustomSheet() {
+  // 选择曲谱文件
+  async selectSheetFile() {
     try {
       const [fileHandle] = await window.showOpenFilePicker({
         types: [
@@ -157,8 +164,9 @@ createApp({
     } catch (err) {
       console.error('无法加载本地曲谱:', err);
     }
-    this.isShowSheet = false
+    this.isSheetListShowing = false
   },
+  // 加载曲谱
   async loadSheet(sheetUrl) {
     try {
       const resp = await fetch(sheetUrl + '?v=' + Date.now)
@@ -169,8 +177,9 @@ createApp({
     } catch (err) {
       console.error('加载曲谱失败:', err)
     }
-    this.isShowSheet = false
+    this.isSheetListShowing = false
   },
+  // 播放曲谱
   async playSheet(json, animate = false) {
     if (this.isPlaying) {
       const transport = Tone.getTransport();
@@ -253,12 +262,12 @@ createApp({
       }
     }
   },
+  // 开关录制
   toggleRecording() {
     this.isRecording = !this.isRecording
     if (this.isRecording) {
       this.record = []
       this.recordStart = Tone.now()
-      this.timer = null
     } else {
       // console.log(this.record.join(',\n'))
       // 默认记录绝对时间值，下面会转为相对时间值
@@ -270,10 +279,11 @@ createApp({
         return JSON.stringify({ time: i === 0 ? 0 : `+${relTime}`, ...rest });
       })
       console.log(relativeSheet.join(',\n'))
-      this.saveSongFile(relativeSheet)
+      this.saveSheetFile(relativeSheet)
     }
   },
-  saveSongFile(sheet) {
+  // 保存曲谱
+  saveSheetFile(sheet) {
     const fileContent = {
       name: '录制的曲谱',
       author: '',
@@ -290,7 +300,8 @@ createApp({
     a.click();
     document.body.removeChild(a);
   },
-  async playResumeAudio() {
+  // 恢复声音
+  async resumeAudio() {
     await Tone.start()
     const audio = this.root.querySelector('#resume')
     console.log(audio)

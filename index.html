@@ -40,11 +40,11 @@
         </template>
       </div>
 
-      <div v-if="isShowSheet" class="backdrop fixed w-full h-full top-0 left-0 flex justify-center items-center px-4 bg-black/10 backdrop-blur"
+      <div v-if="isSheetListShowing" class="backdrop fixed w-full h-full top-0 left-0 flex justify-center items-center px-4 bg-black/10 backdrop-blur"
         @pointerdown="hideSheetList">
         <div class="grid grid-cols-5 gap-4 duration-1000">
           <div class="sheet-btn flex flex-col w-16 h-16 justify-center items-center text-[#FFE3BA] bg-black/50 rounded-lg cursor-pointer"
-            @click="pickCustomSheet">
+            @click="selectSheetFile">
             <span class="text-xs">选择文件</span>
             <div class="icon flex justify-center items-center w-full h-full mix-blend-lighten pointer-events-none"></div>
           </div>
@@ -59,7 +59,7 @@
       </div>
     
       <audio id="resume" src="./wufu.mp3" preload="auto"></audio>
-      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="playResumeAudio">没有声音? 请试试点击这里.<span>
+      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="resumeAudio">没有声音? 请试试点击这里.<span>
     </div>
     <script type="module" src="./src/main.js"></script>
   </body>
