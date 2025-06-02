@@ -153,9 +153,10 @@ createApp({
       const sheetBtns = this.root.querySelectorAll('.sheet-btn')
       animate(sheetBtns, {
         opacity: [0, 1],
-        scale: [0, 1],
-        delay: stagger(100),
-        duration: 300
+        scale: [0.8, 1],
+        delay: stagger(200),
+        duration: 2000,
+        ease: 'outElastic'
       })
     })
   },
