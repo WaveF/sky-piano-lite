@@ -75,14 +75,14 @@
       </div>
     
       <audio id="resume" src="./wufu.mp3" preload="auto"></audio>
-      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="resumeAudio">没有声音? 请试试点击这里.<span>
+      <span class="fixed bottom-0 text-xs text-white py-3 cursor-pointer duration-200 opacity-50 hover:opacity-90 active:opacity-50" @pointerdown="resumeAudio">没有声音? 请试试点击这里.</span>
     </div>
 
-    <dialog id="modal" class="relative max-w-md w-full rounded-xl bg-black/90 duration-300">
-      <div class="p-4">
+    <dialog id="modal" class="w-[fit-content] min-w-[350px] p-0 rounded-xl bg-black/90 duration-300">
+      <div class="p-8">
         <p class="text-sm"></p>
       </div>
-      <button class="absolute top-0 right-0 w-8 h-8 text-xl !outline-none" onclick="modal.close()">×</button>
+      <button class="absolute top-0 right-0 w-8 h-8 text-xl !outline-none" @pointerdown="hideMsg">×</button>
     </dialog>
 
     <script type="module" src="./src/main.js"></script>

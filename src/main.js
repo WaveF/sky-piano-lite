@@ -83,6 +83,14 @@ createApp({
     // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
     document.addEventListener("keydown", this.onPianoKeyDown.bind(this))
+
+    // 尝试修复锁屏后声音消失的问题
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        this.showMsg('欢迎回来!')
+        Tone.start()
+      }
+    })
   },
   // 音键双击
   onPianoDblClick(e) {
@@ -352,6 +360,11 @@ createApp({
     const p = modal.querySelector('p')
     p.innerHTML = msg
     modal.showModal()
+  },
+  async hideMsg() {
+    const modal = document.querySelector('#modal')
+    if (!modal) return
+    modal.close()
   },
   async onLikeClicked() {
     await bin.update({likes: this.likes+1})
