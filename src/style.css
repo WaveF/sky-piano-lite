@@ -84,3 +84,7 @@ html, body {
 .recording {
   background-color: rgba(255, 227, 186, .4);
 }
+
+.glow {
+  filter: drop-shadow(0 0 2px rgba(255, 80, 45, 1)) drop-shadow(0 0 4px rgba(255, 80, 45, .3));
+}
