@@ -89,8 +89,10 @@ createApp({
       if (document.visibilityState === 'visible') {
         this.showMsg(`
           <h2 class="text-lg font-medium">欢迎回来！</h2>
-          <p>移动设备可能会由于电源管理策略导致浏览器声音失效，请尝试刷新网页即可恢复！</p>
-          <img src="./kiss.gif" width="200" height="200">
+          <p class="mt-2">移动设备可能会由于电源管理策略导致浏览器声音失效，请尝试刷新网页即可恢复！</p>
+          <div class="flex justify-center w-full">
+            <img class="-mt-4" src="./kiss.gif" width="120" height="120">
+          </div>
         `)
         Tone.start()
       }
