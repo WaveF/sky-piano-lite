@@ -87,7 +87,11 @@ createApp({
     // 尝试修复锁屏后声音消失的问题
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        this.showMsg('欢迎回来!')
+        this.showMsg(`
+          <h2 class="text-lg font-medium">欢迎回来！</h2>
+          <p>移动设备可能会由于电源管理策略导致浏览器声音失效，请尝试刷新网页即可恢复！</p>
+          <img src="./kiss.gif" width="200" height="200">
+        `)
         Tone.start()
       }
     })
