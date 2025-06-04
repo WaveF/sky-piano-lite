@@ -337,9 +337,9 @@ createApp({
   },
   createSheetJson(sheet) {
     return {
-      name: '录制的曲谱',
-      author: '',
-      email: '',
+      name: '曲谱名称',
+      author: '作者姓名',
+      email: '邮箱地址',
       sampler: 'piano',
       defaultBpm: this.pref?.defaultBpm || 60,
       sheet: sheet.map(s => JSON.parse(s)),
@@ -388,9 +388,16 @@ createApp({
     bin.update({ likes: this.likes })
   },
   onCandleClicked() {
-    const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
-    const body = encodeURIComponent(this.lastRecord.sheet.map(s => JSON.stringify(s)).join('\n'))
-    const url = `mailto:wavef@live.com?subject=${subject}&body=${body}`
+    let shareHtml = ''
+    if (Object.entries(this.lastRecord).length > 0) {
+      const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
+      const body = encodeURIComponent(JSON.stringify(this.lastRecord,null,2))
+      const url = `mailto:wavef@live.com?subject=${subject}&body=${body}`
+      shareHtml = `
+        <a class="mt-4 border border-[#FFE3BA] text-center rounded p-2 active:bg-[#FFE3BA]/30" href="${url}">投稿: 最近一次录制的琴谱</a>
+      `
+    }
+
     this.showMsg(`
       <div class="flex flex-col">
         <h2 class="text-lg font-medium">说明</h2>
@@ -400,7 +407,6 @@ createApp({
           <li>点右下角图标录制曲谱，再次点击结束录制</li>
           <li>录制后会自动下载曲谱文件</li>
           <li>曲谱清单里可回播最近一次录制</li>
-          <li>欢迎把曲谱发送到 <a class="font-mono" href="${url}">wavef@live.com</a></li>
           <li>手机锁屏可能会被电源策略禁声，需刷新</li>
         </ol>
 
@@ -410,6 +416,8 @@ createApp({
           <li>1DTC-SEZ3-8XMK</li>
           <li>BV9Z-GNCJ-YZ8E</li>
         </ul>
+
+        ${shareHtml}
       </div>
     `)
   },
