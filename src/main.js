@@ -285,12 +285,13 @@ createApp({
           sampler.triggerAttackRelease(note, "8n", time);
         });
         if (animate) {
-          this.currentNote = notes[0];
-          const keyEntry = Object.entries(this.keyMap).find(([, note]) => note === notes[0]);
-          if (keyEntry) {
-            const [key] = keyEntry;
-            requestAnimationFrame(() => this.playNoteAnimate(key));
-          }
+          notes.forEach(note => {
+            const keyEntry = Object.entries(this.keyMap).find(([, mappedNote]) => mappedNote === note);
+            if (keyEntry) {
+              const [key] = keyEntry;
+              requestAnimationFrame(() => this.playNoteAnimate(key));
+            }
+          });
         }
       }, absoluteTime);
     });
