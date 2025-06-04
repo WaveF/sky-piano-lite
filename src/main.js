@@ -4,6 +4,7 @@ import { animate, stagger, utils } from 'animejs';
 import * as Tone from 'tone'
 import jsonbin from 'jsonbin-io'
 
+console.clear()
 let sampler = null
 const bin = new jsonbin('683d3d3d8a456b7966a8567f')
 
@@ -23,7 +24,7 @@ createApp({
   isSheetListShowing: false,
   isPlaying: false,
   isRecording: false,
-  likes: '...',
+  likes: 0,
   set lastRecord(json) {
     localStorage.setItem('LAST_RECORD', JSON.stringify(json))
   },
@@ -32,11 +33,13 @@ createApp({
   },
   async mounted(el) {
     this.root = el
-    console.clear()
     console.log('visit -> https://github.com/WaveF/sky-piano-lite')
 
-    this.updateLikes()
-
+    // 获取点赞数
+    bin.read().then(res=>{
+      this.likes = Number(res.record.likes || 0)
+    })
+    
     const resp = await fetch('./pref.json')
     this.pref = await resp.json()
     console.log('读取pref.json', this.pref)
@@ -91,7 +94,7 @@ createApp({
           <h2 class="text-lg font-medium">欢迎回来！</h2>
           <p class="mt-2">移动设备可能会由于电源管理策略导致浏览器声音失效，请尝试刷新网页即可恢复！</p>
           <div class="flex justify-center w-full">
-            <img class="-mt-4" src="./kiss.gif" width="120" height="120">
+            <img class="-mt-4" src="./kiss.gif" width="120" height="120" @pointerdown="location.reload(true);">
           </div>
         `)
         Tone.start()
@@ -380,13 +383,9 @@ createApp({
     if (!modal) return
     modal.close()
   },
-  async onLikeClicked() {
-    await bin.update({likes: this.likes+1})
-    this.updateLikes()
-  },
-  async updateLikes() {
-    const data = await bin.read()
-    this.likes = data.record.likes
+  onLikeClicked() {
+    this.likes++
+    bin.update({ likes: this.likes })
   },
   onCandleClicked() {
     this.showMsg(`
@@ -398,11 +397,11 @@ createApp({
           <li>点右下角图标录制曲谱，再次点击结束录制</li>
           <li>录制后会自动下载曲谱文件</li>
           <li>曲谱清单里可回播最近一次录制</li>
-          <li>欢迎把曲谱发送到 <a class="font-mono" href="mailto:wavef@live.com">wavef@live.com</a></li>
+          <li>欢迎把曲谱发送到 <a class="font-mono" href="getMailtoHref()">wavef@live.com</a></li>
           <li>手机锁屏可能会被电源策略禁声，需刷新</li>
         </ol>
 
-        <h2 class="text-lg font-medium mt-4">好友位</h2>
+        <h2 class="text-lg font-medium mt-4">好友码</h2>
         <ul class="font-mono">
           <li>5HP1-DG68-7WXX</li>
           <li>1DTC-SEZ3-8XMK</li>
@@ -410,6 +409,11 @@ createApp({
         </ul>
       </div>
     `)
+  },
+  getMailtoHref() {
+    const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
+    const body = encodeURIComponent(this.lastRecord.sheet.map(s => JSON.stringify(s)).join('\n'))
+    return `mailto:wavef@live.com?subject=${subject}&body=${body}`
   },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)

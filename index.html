@@ -30,7 +30,7 @@
             <span class="absolute -bottom-1 left-9 pointer-events-none">3</span>
           </div>
           <div class="heart glow relative w-12 h-12 rounded-lg" @pointerdown="onLikeClicked">
-            <span class="absolute -bottom-1 left-9 pointer-events-none">{{likes}}</span>
+            <span class="absolute -bottom-1 left-9 pointer-events-none">{{likes === 0 ? '...' : likes}}</span>
           </div>
         </div>
         <div class="flex gap-2">
