@@ -94,7 +94,7 @@ createApp({
           <h2 class="text-lg font-medium">欢迎回来！</h2>
           <p class="mt-2">移动设备可能会由于电源管理策略导致浏览器声音失效，请尝试刷新网页即可恢复！</p>
           <div class="flex justify-center w-full">
-            <img class="-mt-4" src="./kiss.gif" width="120" height="120" @pointerdown="location.reload(true);">
+            <img class="-mt-4" src="./kiss.gif" width="120" height="120">
           </div>
         `)
         Tone.start()
@@ -388,6 +388,9 @@ createApp({
     bin.update({ likes: this.likes })
   },
   onCandleClicked() {
+    const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
+    const body = encodeURIComponent(this.lastRecord.sheet.map(s => JSON.stringify(s)).join('\n'))
+    const url = `mailto:wavef@live.com?subject=${subject}&body=${body}`
     this.showMsg(`
       <div class="flex flex-col">
         <h2 class="text-lg font-medium">说明</h2>
@@ -397,7 +400,7 @@ createApp({
           <li>点右下角图标录制曲谱，再次点击结束录制</li>
           <li>录制后会自动下载曲谱文件</li>
           <li>曲谱清单里可回播最近一次录制</li>
-          <li>欢迎把曲谱发送到 <a class="font-mono" href="getMailtoHref()">wavef@live.com</a></li>
+          <li>欢迎把曲谱发送到 <a class="font-mono" href="${url}">wavef@live.com</a></li>
           <li>手机锁屏可能会被电源策略禁声，需刷新</li>
         </ol>
 
@@ -409,11 +412,6 @@ createApp({
         </ul>
       </div>
     `)
-  },
-  getMailtoHref() {
-    const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
-    const body = encodeURIComponent(this.lastRecord.sheet.map(s => JSON.stringify(s)).join('\n'))
-    return `mailto:wavef@live.com?subject=${subject}&body=${body}`
   },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)
