@@ -1,6 +1,7 @@
 [
   { "name": "小星星", "sheet": "sheets/小星星.json" },
   { "name": "雨林",   "sheet": "sheets/雨林.json" },
-  { "name": "简单弹奏", "sheet": "sheets/simple.json" },
-  { "name": "测试", "sheet": "sheets/test.json" }
+  { "name": "人畜",   "sheet": "sheets/人畜.json" },
+  { "name": "简单旋律", "sheet": "sheets/simple.json" },
+  { "name": "测试",   "sheet": "sheets/test.json" }
 ]

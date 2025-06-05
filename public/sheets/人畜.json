@@ -1,0 +1,169 @@
+{
+  "name": "人畜",
+  "author": "深田晓",
+  "email": "",
+  "sampler": "piano",
+  "defaultBpm": 60,
+  "sheet": [
+    {
+      "time": 0,
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.411",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.437",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.4",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.427",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.411",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.453",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.421",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.448",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.411",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.427",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.453",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.421",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.443",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.395",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.458",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.416",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.422",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.416",
+      "type": "key",
+      "value": "F5"
+    },
+    {
+      "time": "+0.458",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.422",
+      "type": "key",
+      "value": "E5"
+    },
+    {
+      "time": "+0.458",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.379",
+      "type": "key",
+      "value": "G5"
+    },
+    {
+      "time": "+0.464",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.411",
+      "type": "key",
+      "value": "D5"
+    },
+    {
+      "time": "+0.442",
+      "type": "key",
+      "value": "C5"
+    },
+    {
+      "time": "+0.432",
+      "type": "key",
+      "value": "F5"
+    }
+  ]
+}

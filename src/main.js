@@ -68,20 +68,15 @@ createApp({
     await Tone.start() // 确保 AudioContext resume
     sampler.triggerAttackRelease("C4", "8n", undefined, 0)
 
-    const [candle, heart] = [
-      this.root.querySelector('.candle'),
-      this.root.querySelector('.heart')
-    ]
-
-    nextTick(()=>{
-      animate([candle,heart], {
-        scaleY: [.5, 1],
-        duration: 1200,
-        loopDelay: 1000,
-        loop: true,
-        ease: 'outElastic'
-      })
-    })
+    // nextTick(()=>{
+    //   animate([this.root.querySelector('.candle'), this.root.querySelector('.heart')], {
+    //     scaleY: [.5, 1],
+    //     duration: 1200,
+    //     loopDelay: 1000,
+    //     loop: true,
+    //     ease: 'outElastic'
+    //   })
+    // })
 
     // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
@@ -383,11 +378,15 @@ createApp({
     if (!modal) return
     modal.close()
   },
-  onLikeClicked() {
+  onLikeClicked(e) {
+    this.playBtnActiveMotion(e.currentTarget)
+
     this.likes++
     bin.update({ likes: this.likes })
   },
-  onCandleClicked() {
+  onCandleClicked(e) {
+    this.playBtnActiveMotion(e.currentTarget)
+
     let shareHtml = ''
     if (Object.entries(this.lastRecord).length > 0) {
       const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
@@ -420,6 +419,13 @@ createApp({
         ${shareHtml}
       </div>
     `)
+  },
+  playBtnActiveMotion(el) {
+    animate(el, {
+      scaleY: [.1, 1],
+      duration: 1200,
+      ease: 'outElastic'
+    })
   },
   unmounted() {
     document.removeEventListener("keydown", this.onPianoKeyDown)
