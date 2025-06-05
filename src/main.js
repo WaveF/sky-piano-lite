@@ -31,6 +31,7 @@ createApp({
   get lastRecord() {
     return JSON.parse(localStorage.getItem('LAST_RECORD')) || {}
   },
+  // 初始化
   async mounted(el) {
     this.root = el
     console.log('visit -> https://github.com/WaveF/sky-piano-lite')
@@ -60,23 +61,13 @@ createApp({
     // 初始化sampler
     sampler = new Tone.Sampler({
       urls: sampleUrls,
-      release: 8,
+      release: 20,
       onload: () => this.loaded = true,
     }).toDestination()
 
     await Tone.loaded()
     await Tone.start() // 确保 AudioContext resume
     sampler.triggerAttackRelease("C4", "8n", undefined, 0)
-
-    // nextTick(()=>{
-    //   animate([this.root.querySelector('.candle'), this.root.querySelector('.heart')], {
-    //     scaleY: [.5, 1],
-    //     duration: 1200,
-    //     loopDelay: 1000,
-    //     loop: true,
-    //     ease: 'outElastic'
-    //   })
-    // })
 
     // iOS Safari 会无视 user-scalable=no 和 touch-action: manipulation; 因此需要屏蔽双击
     document.addEventListener('dblclick', e => { e.preventDefault() }, { passive: false })
@@ -374,6 +365,7 @@ createApp({
     modal.showModal()
   },
   async hideMsg() {
+    await Tone.start()
     const modal = document.querySelector('#modal')
     if (!modal) return
     modal.close()
@@ -391,7 +383,7 @@ createApp({
     if (Object.entries(this.lastRecord).length > 0) {
       const subject = encodeURIComponent("sky-piano-lite 琴谱投稿")
       const body = encodeURIComponent(JSON.stringify(this.lastRecord,null,2))
-      const url = `mailto:wavef@live.com?subject=${subject}&body=${body}`
+      const url = `mailto:wavef@qq.com?subject=${subject}&body=${body}`
       shareHtml = `
         <a class="mt-3 border border-[#FFE3BA] text-center rounded p-2 !outline-none active:bg-[#FFE3BA]/30" href="${url}">投稿: 最近一次录制的琴谱</a>
       `
