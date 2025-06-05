@@ -394,7 +394,7 @@ createApp({
       const body = encodeURIComponent(JSON.stringify(this.lastRecord,null,2))
       const url = `mailto:wavef@live.com?subject=${subject}&body=${body}`
       shareHtml = `
-        <a class="mt-4 border border-[#FFE3BA] text-center rounded p-2 active:bg-[#FFE3BA]/30" href="${url}">投稿: 最近一次录制的琴谱</a>
+        <a class="mt-3 border border-[#FFE3BA] text-center rounded p-2 !outline-none active:bg-[#FFE3BA]/30" href="${url}">投稿: 最近一次录制的琴谱</a>
       `
     }
 
@@ -410,7 +410,7 @@ createApp({
           <li>手机锁屏可能会被电源策略禁声，需刷新</li>
         </ol>
 
-        <h2 class="text-lg font-medium mt-4">好友码</h2>
+        <h2 class="text-lg font-medium mt-3">好友码</h2>
         <ul class="font-mono">
           <li>5HP1-DG68-7WXX</li>
           <li>1DTC-SEZ3-8XMK</li>
